@@ -1,4 +1,4 @@
-# Github APIs: Python Integration
+# Github APIs: Python Integration & Swagger Documentation
 
 # Steps to execute project
 
