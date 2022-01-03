@@ -38,4 +38,4 @@ Step 3: Authorize the APIs using Authorize button at right. Enter Bearer <Your_t
 
 Step 4: Execute the APIs by providing required parameters.
 
-Attaching the screenshots for reference.
+Attaching the screenshots for reference [Screenshots](https://github.com/agaleprerana/Github-APIs-with-Python-Swagger/tree/main/Swagger/Screenshots)
