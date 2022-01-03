@@ -1,0 +1,209 @@
+swagger: '2.0'
+info:
+  description: Execute git related operations.
+  version: 3.0.0
+  title: Github
+
+paths:
+  /user:
+    get:
+      summary: Get user details
+      operationId: get_user_details
+      description: Fetch user information.
+      produces:
+      - application/json
+      responses:
+        200:
+          description: Search results matching criteria
+          schema:
+            $ref: "#/definitions/User_details"
+        400:
+          description: bad request
+        401:
+          description: Invalid token
+  /users/{user}/projects:
+    get:
+      summary: Get projects
+      operationId: get_projects
+      description: Fetch all Projects
+      produces:
+      - application/json
+      parameters:
+      - name: user
+        in: path
+        description: User ID
+        type: string
+        required: true
+      responses:
+        200:
+          description: Search results matching criteria
+        400:
+          description: bad request
+        401:
+          description: Invalid token
+  /user/repos:
+    post:
+      summary: Create Repository
+      operationId: post_repos
+      description: Creates repository
+      produces:
+      - application/json
+      parameters:
+        - in: body
+          name: body
+          description: To create new repositiory
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+                default: test_swagger_repo
+              description:
+                type: string
+                default: testing swagger
+              homepage:
+                type: string
+                default: https://github.com
+              private:
+                type: boolean
+                default: false
+              has_issues:
+                type: boolean
+              has_projects:
+                type: boolean
+              has_wiki:
+                type: boolean
+      responses:
+        201:
+          description: Successfully created.
+        401:
+          description: Invalid token
+        405:
+          description: Invalid Input
+  /repos/{user}/{repo_name}:
+    delete:
+      summary: Deletes repositiory
+      operationId: delete_repo
+      description: Fetch all Projects
+      produces:
+      - application/json
+      parameters:
+      - name: user
+        in: path
+        description: User ID
+        type: string
+        required: true
+      - name: repo_name
+        in: path
+        description: repo name
+        type: string
+        required: true
+      responses:
+        200:
+          description: Success!!!
+        204:
+          description: No content...success!
+        404:
+          description: Not found.
+
+definitions:
+  User_details:
+    type: object
+    properties:
+      login:
+        type: string
+      id:
+        type: string
+      node_id:
+        type: string
+      avatar_url:
+        type: string
+      gravatar_id:
+        type: string
+      url:
+        type: string
+      html_url:
+        type: string
+      followers_url:
+        type: string
+      following_url:
+        type: string
+      gists_url:
+        type: string
+      starred_url:
+        type: string
+      subscriptions_url:
+        type: string
+      organizations_url:
+        type: string
+      repos_url:
+        type: string
+      events_url:
+        type: string
+      received_events_url:
+        type: string
+      type:
+        type: string
+      site_admin:
+        type: string
+      name:
+        type: string
+      company:
+        type: string
+      blog:
+        type: string
+      location:
+        type: string
+      email:
+        type: string
+      hireable:
+        type: string
+      bio:
+        type: string
+      twitter_username:
+        type: string
+      public_repos:
+        type: string
+      public_gists:
+        type: integer
+      followers:
+        type: integer
+      following:
+        type: integer
+      created_at:
+        type: string
+      updated_at:
+        type: string
+      private_gists:
+        type: integer
+      total_private_repos:
+        type: integer
+      owned_private_repos:
+        type: integer
+      disk_usage:
+        type: integer
+      collaborators:
+        type: string
+      two_factor_authentication:
+        type: boolean
+      plan:
+        type: object
+        properties:
+          name:
+            type: string
+          space:
+            type: string
+          collaborators:
+            type: integer
+          private_repos:
+            type: integer
+host: api.github.com
+schemes:
+  - https
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+security:
+  - Bearer: []
